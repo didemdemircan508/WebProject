@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "_MemberLayout";
+}
+@model UserPrimeAddDto
+@using System.Security.Claims;
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Sayı Girişi</h2>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-info" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+
+        }
+        <div asp-validation-summary="ModelOnly" class="alert alert-info" role="alert">
+        </div>
+        <form asp-controller="Member" asp-action="AddCalculate" method="post">
+
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <input asp-for="Numbers" class="form-control">
+                    <span class="text-danger" asp-validation-for="Numbers"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-9">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+
+          
+
+
+        });
+
+
+    </script>
+
+
+
+}
+
+
+
