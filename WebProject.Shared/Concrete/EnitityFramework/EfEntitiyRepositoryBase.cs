@@ -23,11 +23,8 @@ namespace WebProject.Shared.Concrete.EnitityFramework
 
         public async  Task AddAsync(T model)
         {
-          var result=  await _context.Set<T>().AddAsync(model);
-
-          
-
-        }
+          var result=await _context.Set<T>().AddAsync(model);
+         }
 
         public async  Task<List<T>> GetAllAsync()
         {

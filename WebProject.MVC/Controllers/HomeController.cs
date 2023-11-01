@@ -28,6 +28,41 @@ namespace WebProject.MVC.Controllers
             return View();
         }
 
+        public IActionResult SignUp()
+        {
+            return View();
+
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> SignUp(UserAddDto request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var identityResult = await _UserManager.CreateAsync(new User()
+            {
+                UserName = request.UserName,
+                Email = request.Email
+            }, request.PasswordConfirm);
+
+
+            if (identityResult.Succeeded)
+            {
+                TempData["SuccessMessage"] = "Kayıt İşlemi Başarılır";
+                return RedirectToAction(nameof(HomeController.SignUp));
+
+            }
+            ModelState.AddModelErrorList(identityResult.Errors.Select(x => x.Description).ToList());
+
+
+            return View();
+
+
+        }
+
         [HttpGet]
         public IActionResult SignIn()
         {
@@ -38,7 +73,7 @@ namespace WebProject.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> SignIn(UserLoginDto request)
         {
-            string  returnUrl= Url.Action("Index", "Member");
+            string returnUrl = Url.Action("Index", "Member")!;
             var mail = request.Email;
             var hasUser = await _UserManager.FindByEmailAsync(mail);
             if (hasUser == null)
@@ -52,31 +87,20 @@ namespace WebProject.MVC.Controllers
             if (signInResult.Succeeded)
             {
                 return Redirect(returnUrl!);
-
-
             }
 
             if (signInResult.IsLockedOut)
             {
-
                 ModelState.AddModelErrorList(new List<string>() { "3 dakika boyunca giriş yapamazsınız" });
                 return View();
             }
-
-
-
-
             var unsuccesCount = await _UserManager.GetAccessFailedCountAsync(hasUser);
-
             ModelState.AddModelErrorList(new List<string>() { "Email Veya Şifre yanlış", $"Başarısız Giriş Sayısı={unsuccesCount}" });
-
             return View();
 
 
 
         }
-
-
 
         public IActionResult Privacy()
         {

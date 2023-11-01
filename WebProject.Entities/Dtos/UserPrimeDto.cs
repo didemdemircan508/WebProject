@@ -7,9 +7,12 @@ using WebProject.Entities.Entities.Entity;
 
 namespace WebProject.Entities.Dtos
 {
-    public class UserPrimeListDto
+    public class UserPrimeDto
     {
+        public int UserId { get; set; }
 
-        public List<UserPrimeNumber> UserPrimeNumbers { get; set; }
+        public string Numbers { get; set; }
+
+        public int LargestPrimeNumber { get; set; }
     }
 }

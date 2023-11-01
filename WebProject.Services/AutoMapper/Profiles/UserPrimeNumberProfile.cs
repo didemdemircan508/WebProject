@@ -14,8 +14,8 @@ namespace WebProject.Services.AutoMapper.Profiles
     {
         public UserPrimeNumberProfile()
         {
-            CreateMap<UserPrimeAddDto, UserPrimeNumber>().ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(x => DateTime.Now));
-    
+           CreateMap<UserPrimeAddDto, UserPrimeNumber>().ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(x => DateTime.Now));
+           CreateMap<UserPrimeDto,UserPrimeNumber>().ReverseMap();
 
         }
     }

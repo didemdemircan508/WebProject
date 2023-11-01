@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-6 offset-md-3">
-        <h2>Sayı Girişi</h2>
+        <h3>Sayı Girişi</h3>
 
         @if (TempData["SuccessMessage"] != null)
         {
@@ -20,7 +20,7 @@
         <form asp-controller="Member" asp-action="AddCalculate" method="post">
 
             <div class="row mb-3">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <input asp-for="Numbers" class="form-control">
                     <span class="text-danger" asp-validation-for="Numbers"></span>
                 </div>
@@ -40,15 +40,9 @@
     <script>
         $(document).ready(function () {
 
-          
-
-
         });
 
-
     </script>
-
-
 
 }
 

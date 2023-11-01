@@ -14,21 +14,17 @@ namespace WebProject.Entities.DataAnnotations
         {
             if (value == null)
             {
-                return true; // Boş değerler kabul edilebilir
+                return true; 
             }
+             string stringValue = value.ToString();
 
-            // Gelen değeri bir dize olarak alın
-            string stringValue = value.ToString();
-
-            // Virgülle ayrılmış sayıları dizeyi böler
             string[] numbers = stringValue.Split(',');
 
-            // Her elemanın sayı olup olmadığını kontrol et
             foreach (var number in numbers)
             {
                 if (!int.TryParse(number, out _))
                 {
-                    return false; // Sayı değilse geçersiz
+                    return false; 
                 }
             }
 

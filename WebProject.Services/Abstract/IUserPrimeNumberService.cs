@@ -10,7 +10,7 @@ namespace WebProject.Services.Abstract
 {
     public interface IUserPrimeNumberService
     {
-        Task<List<UserPrimeNumber>> GetAll();
+        Task<List<UserPrimeDto>> GetAll();
 
         Task Add(UserPrimeAddDto userPrimeAddDto);
     }

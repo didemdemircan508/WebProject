@@ -78,7 +78,7 @@ namespace WebProject.MVC.Controllers
         public async  Task<IActionResult> GetList()
         {
            var list= await _userPrimeNumberService.GetAll();
-            return View(list);
+           return View(list);
 
 
         }

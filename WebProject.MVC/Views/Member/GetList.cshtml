@@ -1,4 +1,4 @@
-﻿@model List<UserPrimeNumber>
+﻿@model List<UserPrimeDto>
 @{
     Layout = "_MemberLayout";
     ViewBag.Title = "Kullanıcı Girişleri";
@@ -38,13 +38,9 @@
                             <td>@user.UserId</td>
                             <td>@user.Numbers</td>
                             <td>@user.LargestPrimeNumber</td>
-                          
-
                         </tr>
 
-                    } 
-
-
+                    }
                 </tbody>
             </table>
         </div>

@@ -43,17 +43,12 @@ namespace WebProject.Services.Concrete
             if (maxPrime != int.MinValue)
             {
                 data.LargestPrimeNumber= maxPrime;
-
-                //Console.WriteLine("Dizideki en büyük asal sayı: " + maxPrime);
             }
             else
             {
                 data.LargestPrimeNumber = 0;
             }
 
-
-
-           
 
             await _unitOfWork.UserPrimeNumbers.AddAsync(data);
             await _unitOfWork.SaveAsync();
@@ -75,11 +70,11 @@ namespace WebProject.Services.Concrete
 
         }
 
-        public async Task<List<UserPrimeNumber>> GetAll()
+        public async Task<List<UserPrimeDto>> GetAll()
         {
             var list = await _unitOfWork.UserPrimeNumbers.GetAllAsync();
-           
-            return list;
+            var data = _mapper.Map<List<UserPrimeDto>>(list);
+            return data;
         }
 
       
