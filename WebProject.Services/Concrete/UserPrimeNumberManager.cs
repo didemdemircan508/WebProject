@@ -24,7 +24,7 @@ namespace WebProject.Services.Concrete
 
         public async Task Add(UserPrimeAddDto userPrimeAddDto)
         {
-            var data = _mapper.Map<UserPrimeNumber>(userPrimeAddDto);
+            var userPrime = _mapper.Map<UserPrimeNumber>(userPrimeAddDto);
 
             string numbersString = userPrimeAddDto.Numbers;
             string[] numberStrings = numbersString.Split(',');
@@ -42,15 +42,11 @@ namespace WebProject.Services.Concrete
 
             if (maxPrime != int.MinValue)
             {
-                data.LargestPrimeNumber= maxPrime;
+                userPrime.LargestPrimeNumber= maxPrime;
             }
-            else
-            {
-                data.LargestPrimeNumber = 0;
-            }
+           
 
-
-            await _unitOfWork.UserPrimeNumbers.AddAsync(data);
+            await _unitOfWork.UserPrimeNumbers.AddAsync(userPrime);
             await _unitOfWork.SaveAsync();
            
 
@@ -72,9 +68,9 @@ namespace WebProject.Services.Concrete
 
         public async Task<List<UserPrimeDto>> GetAll()
         {
-            var list = await _unitOfWork.UserPrimeNumbers.GetAllAsync();
-            var data = _mapper.Map<List<UserPrimeDto>>(list);
-            return data;
+            var userPrimeList = await _unitOfWork.UserPrimeNumbers.GetAllAsync();
+            var userPrimeListDto = _mapper.Map<List<UserPrimeDto>>(userPrimeList);
+            return userPrimeListDto;
         }
 
       

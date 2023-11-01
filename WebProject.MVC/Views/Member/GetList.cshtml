@@ -37,7 +37,14 @@
                         <tr>
                             <td>@user.UserId</td>
                             <td>@user.Numbers</td>
-                            <td>@user.LargestPrimeNumber</td>
+                            @if(@user.LargestPrimeNumber==0)
+                            {
+                               <td>-</td>
+                            }
+                            else
+                            {
+                              <td>@user.LargestPrimeNumber</td>
+                            }
                         </tr>
 
                     }
